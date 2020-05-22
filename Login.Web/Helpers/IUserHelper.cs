@@ -1,4 +1,5 @@
 ﻿using Login.Web.Data.Entities;
+using Login.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,18 @@ namespace Login.Web.Helpers
         Task AddUserToRoleAsync(UserEntity user, string roleName);
 
         Task<bool> IsUserInRoleAsync(UserEntity user, string roleName);
+
+
+        Task<SignInResult> LoginAsync(LoginViewModel model);
+
+        Task LogoutAsync();
+        Task<UserEntity> AddUserAsync(AddUserViewModel model, string path);
+
+        Task<IdentityResult> ChangePasswordAsync(UserEntity user, string oldPassword, string newPassword);
+
+        Task<IdentityResult> UpdateUserAsync(UserEntity user);
+
+
 
     }
 }

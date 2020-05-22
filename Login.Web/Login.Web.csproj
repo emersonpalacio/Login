@@ -14,4 +14,9 @@
     <ProjectReference Include="..\Login.Common\Login.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\Users\" />
+    <Folder Include="wwwroot\User\" />
+  </ItemGroup>
+
 </Project>

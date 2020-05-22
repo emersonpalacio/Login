@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Login.Web.Data;
 using Login.Web.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Login.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TaxiEntitiesController : Controller
     {
         private readonly DataContext _context;
