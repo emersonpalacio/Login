@@ -16,8 +16,7 @@ namespace Login.Web.Data
         public SeedDb(DataContext context, IUserHelper userHelper )
         {
             this._context = context;
-            this._userHelper = userHelper;
-        
+            this._userHelper = userHelper;        
         }
 
         public async Task SeedAsync()
@@ -32,7 +31,7 @@ namespace Login.Web.Data
         private async Task<UserEntity> CheckUserAsync(string document, string firstName, string lastName, string email,
                                                                                 string phone, string address, UserType userType)
         {
-            var user = await _userHelper.GetUserByEmailAsync(email);
+            var user = await _userHelper.GetUserAsync(email);
             if (user == null)
             {
                 user = new UserEntity
@@ -49,6 +48,10 @@ namespace Login.Web.Data
 
                 await _userHelper.AddUserAsync(user, "123456");
                 await _userHelper.AddUserToRoleAsync(user, userType.ToString());
+
+                var token = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
+                await _userHelper.ConfirmEmailAsync(user, token);
+
             }
 
             return user;
